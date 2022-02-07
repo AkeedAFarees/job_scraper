@@ -6,9 +6,9 @@
     <div class="col-lg-12 text-center form-login height-500">
       <p>
         <%= form_tag '/login' do %>
-            <%= text_field_tag :username, "Username", class: "form-control" %>
+            <%= text_field_tag :username, nil, placeholder: "Username", class: "form-control" %>
           <br>
-          <%= password_field_tag :password, "Password", class: "form-control" %>
+          <%= password_field_tag :password, nil, placeholder: "Password", class: "form-control" %>
           <br>
           <%= submit_tag "Log In", class: "form-control btn btn-primary" %>
         <% end %>
