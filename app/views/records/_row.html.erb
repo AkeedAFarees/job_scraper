@@ -1,0 +1,12 @@
+<tr>
+  <th scope="row"><%= i %></th>
+
+  <td><%= record.title %></td>
+  <td><%= record.company %></td>
+  <td><%= link_to record.link.split("https://cv.ee/en/vacancy/").last.split("/", 2).last, record.link, target: :_blank%></td>
+  <td><%= record.published_date %></td>
+  <td><%= record.published_type %></td>
+  <td><%= record.revenue %></td>
+  <td><%= record.revenue_period %></td>
+  <td><%= record.skill %></td>
+</tr>

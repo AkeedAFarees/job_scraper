@@ -18,7 +18,7 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css?family=Merriweather:400,700');
 
-$white: white;
+$white: #F5F5F5;
 $gray: #b3b3b3;
 
 .navbar {
@@ -26,7 +26,7 @@ $gray: #b3b3b3;
     background: #6b8ae1;
 }
 body {
-    background: $gray;
+    background: $white;
     color: $white;
     font-family: 'Merriweather', sans-serif;
 }
@@ -38,9 +38,9 @@ p {
     font-size: 16px;
     color: $white;
 }
-a:visited {
-    color: $gray;
-}
+//a:visited {
+//    color: $gray;
+//}
 .jumbotron {
     background: #3e434e;
     color: $white;

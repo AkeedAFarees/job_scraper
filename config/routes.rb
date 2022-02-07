@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root 'sessions#create'
 
-  resources :users
+  resources :users, :records
 
   get '/login', to: 'sessions#login'
   post '/login', to: 'sessions#create'
@@ -12,6 +12,4 @@ Rails.application.routes.draw do
 
   get '/scraper', to: 'scraper#index'
 
-  get '/records', to: 'records#new'
-  post '/records', to: 'records#create'
 end

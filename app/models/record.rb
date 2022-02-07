@@ -10,43 +10,81 @@ class Record < ApplicationRecord
     end
   end
 
-  def self.scrape(skill)
-    cv_url            = "https://cv.ee/en/search?keywords%5B0%5D=#{skill}"
-    credit_info_url   = "https://www.e-krediidiinfo.ee/otsing?&q="
+  def self.scrape(skills)
+    # Hard code URLs for both website with empty query parameters
+    cv_url                = "https://cv.ee/en/search?keywords%5B0%5D="
+    credit_info_url       = "https://www.e-krediidiinfo.ee/otsing?&q="
 
-    browser = Watir::Browser.new
-    browser.goto cv_url
-    parsed_page = Nokogiri::HTML(browser.html)
+    # Initiate empty array for bulk creation of jobs in database
+    records             = []
 
-    CSV.open("storage/#{Time.now.iso8601}.csv", "a+") do |csv|
-      csv << ["Company Name", "Job Tile", "Job Link", "Published Date", "Revenue", "Revenue Period"]
+    # Initiate browser window
+    browser               = Watir::Browser.new
 
-      jobs = parsed_page.css('div.vacancy-item')
-      jobs.each do |job|
-        title = job.children.last.css('span.vacancy-item__title').text
-        link = job.children.first.attributes["href"].value
+    # Loop through all skills
+    skills.each do |skill|
+      # Visit url and look for jobs based on specific skill
+      browser.goto        cv_url + skill
+      parsed_page         = Nokogiri::HTML(browser.html)
 
-        main_info = job.children.css('div.vacancy-item__info-main').children.map{|e| e.text}
+      # Fetch all jobs from parsed HTML page returned from browser
+      fetched_jobs        = parsed_page.css('div.vacancy-item')
 
-        company_name = main_info.first
-        published_date = main_info.last.split(" | ").first
+      # Loop through each job
+      fetched_jobs.each do |job|
+        # Find Job Title and Job Link from the parsed HTML
+        title             = job.children.last.css('span.vacancy-item__title').text
+        link              = job.children.first.attributes["href"].value
 
-        browser.goto credit_info_url + company_name
-        credit_info_page = Nokogiri::HTML(browser.html)
+        # Extract main info of the job
+        main_info         = job.children.css('div.vacancy-item__info-main').children.map{|e| e.text}
 
+        # Extract company name
+        company_name      = main_info.first
+
+        # Extract and process all info related to publishing of the job (Time and Type)
+        publish_info      = main_info.last.split(" | ").first.split(" ", 2)
+        published_date    = publish_info.last.to_datetime
+        published_type    = publish_info.first
+
+        # Visit second website to fetch credit info for the company
+        browser.goto      credit_info_url + company_name
+        credit_info_page  = Nokogiri::HTML(browser.html)
+
+        # If table exists, it means there are multiple results for the company name
+        # Extract revenue info if there is a direct hit on company name
         if credit_info_page.at('table.table-search') == nil
-          revenue_row = credit_info_page.at('table').search('tr')[-3].children.text.split("\n").map(&:strip).select(&:present?).last.split(" (perioodil ")
-          revenue = revenue_row.first
-          dates = revenue_row.last.gsub(")","").split(" - ").map(&:to_datetime)
-          revenue_period = (dates.last - dates.first).to_i.to_s + " days"
+          revenue_row     = credit_info_page.at('table').search('tr')[-3].children.text.split("\n").map(&:strip).select(&:present?).last.split(" (perioodil ")
+          revenue         = revenue_row.first
+          dates           = revenue_row.last.gsub(")","").split(" - ").map(&:to_datetime)
+          revenue_period  = (dates.last - dates.first).to_i.to_s + " days"
+        else
+          # Write logic to do same processing as above for the very first record if there are multiple hits on the company name
         end
 
-        csv << [company_name, title, link, published_date, revenue ||=0 , revenue_period ||= 0]
+        # Create a populated hash to push in records array for bulk creation.
+        single_job = {
+          link:           "https://cv.ee" + link,
+          skill:          skill,
+          title:          title,
+          company:        company_name,
+          revenue:        revenue || nil,
+          published_date: published_date,
+          published_type: published_type,
+          revenue_period: revenue_period || nil,
+          created_at:     Time.now.utc,
+          updated_at:     Time.now.utc
+        }
+
+        # Push hash to array
+        records.push(single_job)
       end
     end
 
+    # Close browser connection
     browser.close
 
+    Job.insert_all!(records)
   end
 
 end
