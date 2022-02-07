@@ -34,6 +34,10 @@ gem 'nokogiri', '~> 1.11', '>= 1.11.7'
 gem 'pg'
 gem 'pry'
 
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
