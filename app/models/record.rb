@@ -21,6 +21,9 @@ class Record < ApplicationRecord
     # Initiate browser window
     browser               = Watir::Browser.new
 
+    # Fetch job titles and companies to reduce duplication
+    jobs = Job.all.select(:title, :company).map{|j| j.title + j.company}
+
     # Loop through all skills
     skills.each do |skill|
       # Visit url and look for jobs based on specific skill
@@ -44,8 +47,18 @@ class Record < ApplicationRecord
 
         # Extract and process all info related to publishing of the job (Time and Type)
         publish_info      = main_info.last.split(" | ").first.split(" ", 2)
-        published_date    = publish_info.last.to_datetime
+
+        time_ago          = publish_info.last.split(" ").reject{|t| t == "about"}
+        published_date    = time_ago[0].to_i.send(time_ago[1]).ago.to_date
         published_type    = publish_info.first
+
+        # Skip iteration to stop duplication of record, if published date of current job is older than today.
+        # That means it must already be in database.
+        if published_date < Date.today
+          next
+        elsif jobs.include?(title + company_name)
+          next
+        end
 
         # Visit second website to fetch credit info for the company
         browser.goto      credit_info_url + company_name
