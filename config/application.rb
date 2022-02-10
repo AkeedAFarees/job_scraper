@@ -2,7 +2,6 @@ require_relative "boot"
 
 require "rails/all"
 require 'csv'
-%w(watir webdrivers nokogiri pry csv).each { |gem| require gem }
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
