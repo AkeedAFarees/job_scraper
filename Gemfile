@@ -42,10 +42,6 @@ gem 'google-api-client'
 
 gem 'figaro'
 
-gem 'watir'
-gem 'webdrivers'
-gem 'nokogiri'
-gem 'pry'
 gem 'csv'
 
 group :development, :test do
