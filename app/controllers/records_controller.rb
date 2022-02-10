@@ -1,8 +1,6 @@
 class RecordsController < ApplicationController
   require "google_sheets_service"
 
-  before_action :index, only: :export
-
   def new
     @record = Record.new
   end
@@ -21,14 +19,11 @@ class RecordsController < ApplicationController
 
   def index
     @record = Record.new
-    @records = Job.filter(params[:search]).reverse
-
-    p @records
-    p @records.present?
+    $records = Job.filter(params[:search]).reverse
   end
 
   def export
-    send_data Record.export_to_csv(@records), filename: "records-#{Date.today}.csv"
+    send_data Record.export_to_csv($records), filename: "records-#{Date.today}.csv"
   end
 
   private

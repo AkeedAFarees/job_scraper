@@ -54,9 +54,7 @@ class Record < ApplicationRecord
 
         # Skip iteration to stop duplication of record, if published date of current job is older than today.
         # That means it must already be in database.
-        if published_date.before? Date.today
-          next
-        elsif jobs.include?(title + company_name)
+        if jobs.include?(title + company_name)
           next
         end
 
