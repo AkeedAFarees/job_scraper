@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
   get '/scraper', to: 'scraper#index'
 
+  get '/export', to: 'records#export'
+
 end

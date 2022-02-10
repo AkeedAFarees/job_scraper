@@ -1,33 +1,37 @@
 class RecordsController < ApplicationController
   require "google_sheets_service"
 
-  before_action :extract_skills, only: :index
+  before_action :index, only: :export
 
   def new
     @record = Record.new
   end
 
   def create
-    if record_params[:skills].present?
+    if record_params[:option] == "skill"
       Record.scrape(record_params[:skills])
-    else
+    elsif record_params[:option] == "sheet"
+      extract_skills
+      Record.scrape(@skills)
+    elsif record_params[:option] == "file"
       Record.import(record_params[:file])
-      # flash[:notice] = "Records uploaded successfully"
     end
     redirect_to records_path
   end
 
   def index
     @record = Record.new
-    @records = Job.filter(params[:search])
+    @records = Job.filter(params[:search]).reverse
+  end
 
-    Record.scrape(@skills)
+  def export
+    send_data Record.export_to_csv(@records), filename: "records-#{Date.today}.csv"
   end
 
   private
 
   def record_params
-    record_params = params.fetch(:record, {}).permit(:skills)
+    record_params = params.fetch(:record, {}).permit(:skills, :option)
     record_params[:skills] = record_params[:skills].split(",") if record_params[:skills].present?
 
     record_params

@@ -54,7 +54,7 @@ class Record < ApplicationRecord
 
         # Skip iteration to stop duplication of record, if published date of current job is older than today.
         # That means it must already be in database.
-        if published_date < Date.today
+        if published_date.before? Date.today
           next
         elsif jobs.include?(title + company_name)
           next
@@ -97,7 +97,19 @@ class Record < ApplicationRecord
     # Close browser connection
     browser.close
 
-    Job.insert_all!(records)
+    Job.insert_all!(records) if records.present?
+  end
+
+  def self.export_to_csv(jobs)
+    attributes = %w{Title Company Link Published_Date Published_Type Revenue Revenue_Period Skill}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      jobs.each do |job|
+        csv << attributes.map{ |attr| job.send(attr.downcase) }
+      end
+    end
   end
 
 end

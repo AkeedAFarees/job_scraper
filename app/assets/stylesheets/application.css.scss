@@ -38,9 +38,6 @@ p {
     font-size: 16px;
     color: $white;
 }
-//a:visited {
-//    color: $gray;
-//}
 .jumbotron {
     background: #3e434e;
     color: $white;
@@ -90,4 +87,23 @@ height-500 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.vertical {
+  border-left: 6px solid black;
+  height: 130px;
+  position:absolute;
+  left: 50%;
+}
+
+.horizontal {
+  margin-top: 50px;
+  border-top: 6px solid black;
+  height: 100px;
+  //position:absolute;
+  //top: 50%;
+}
+
+.m-w-150 {
+  min-width: 150px;
 }
