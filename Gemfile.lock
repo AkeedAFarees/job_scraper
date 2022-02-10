@@ -81,6 +81,7 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    csv (3.2.2)
     declarative (0.0.20)
     digest (3.1.0)
     erubi (1.10.0)
@@ -181,8 +182,6 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.1-x86_64-darwin)
-      racc (~> 1.4)
     nokogiri (1.13.1-x86_64-linux)
       racc (~> 1.4)
     os (1.1.4)
@@ -313,6 +312,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  csv
   figaro
   google-api-client
   jbuilder (~> 2.7)
