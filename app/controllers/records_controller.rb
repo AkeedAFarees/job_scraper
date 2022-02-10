@@ -22,6 +22,9 @@ class RecordsController < ApplicationController
   def index
     @record = Record.new
     @records = Job.filter(params[:search]).reverse
+
+    p @records
+    p @records.present?
   end
 
   def export
