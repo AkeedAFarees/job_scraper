@@ -1,6 +1,5 @@
 <tr>
-  <th scope="row"><%= i %></th>
-
+  <td><%= record.id %></td>
   <td><%= record.title %></td>
   <td><%= record.company %></td>
   <td><%= link_to record.link.split("https://cv.ee/en/vacancy/").last.split("/", 2).last, record.link, target: :_blank%></td>

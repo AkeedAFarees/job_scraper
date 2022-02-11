@@ -19,7 +19,8 @@ class RecordsController < ApplicationController
 
   def index
     @record = Record.new
-    $records = Job.filter(params[:search]).reverse
+    $records = Job.filter(params[:search])
+    @records = $records.paginate(params)
   end
 
   def export
