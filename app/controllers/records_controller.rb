@@ -19,8 +19,8 @@ class RecordsController < ApplicationController
 
   def index
     @record = Record.new
-    $records = Job.filter(params[:search])
-    @records = $records.paginate(params)
+    $records = Job.filter(params[:search]).reverse
+    @records = Kaminari.paginate_array($records).page(params[:page]).per(Kaminari.config.default_per_page)
   end
 
   def export

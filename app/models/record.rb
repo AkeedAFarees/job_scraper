@@ -19,7 +19,7 @@ class Record < ApplicationRecord
     records             = []
 
     # Initiate browser window
-    browser               = Watir::Browser.new
+    browser               = Watir::Browser.new :chrome, headless: true
 
     # Fetch job titles and companies to reduce duplication
     jobs = Job.all.select(:title, :company).map{|j| j.title + j.company}
