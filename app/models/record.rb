@@ -19,7 +19,7 @@ class Record < ApplicationRecord
     records             = []
 
     # Initiate browser window
-    browser               = Watir::Browser.new :chrome, headless: true
+    browser               = Watir::Browser.new(:chrome, browser_options)
 
     # Fetch job titles and companies to reduce duplication
     jobs = Job.all.select(:title, :company).map{|j| j.title + j.company}
@@ -107,6 +107,23 @@ class Record < ApplicationRecord
       jobs.each do |job|
         csv << attributes.map{ |attr| job.send(attr.downcase) }
       end
+    end
+  end
+
+  def browser_options
+    if ENV['GOOGLE_CHROME_SHIM'].present?
+      {
+        headless: true,
+        options: { binary: ENV['GOOGLE_CHROME_SHIM'] },
+        switches: [
+          '--ignore-certificate-errors',
+          '--disable-popup-blocking',
+          '--disable-translate',
+          '--disable-gpu'
+        ]
+      }
+    else
+      {}
     end
   end
 
