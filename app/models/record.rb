@@ -110,7 +110,10 @@ class Record < ApplicationRecord
     end
   end
 
+  private
+
   def browser_options
+    p ENV['GOOGLE_CHROME_SHIM']
     if ENV['GOOGLE_CHROME_SHIM'].present?
       {
         headless: true,
