@@ -18,6 +18,15 @@ class Record < ApplicationRecord
     # Initiate empty array for bulk creation of jobs in database
     records             = []
 
+    browser_options = if ENV['GOOGLE_CHROME_SHIM'].present?
+                        {
+                          headless: true,
+                          options: { binary: ENV['GOOGLE_CHROME_SHIM'] },
+                          switches: %w(--ignore-certificate-errors --disable-popup-blocking --disable-translate --disable-gpu)
+                        }
+                      else
+                        {}
+                      end
     # Initiate browser window
     browser               = Watir::Browser.new(:chrome, browser_options)
 
@@ -109,25 +118,5 @@ class Record < ApplicationRecord
       end
     end
   end
-
-  private
-
-  def browser_options
-    p ENV['GOOGLE_CHROME_SHIM']
-    if ENV['GOOGLE_CHROME_SHIM'].present?
-      {
-        headless: true,
-        options: { binary: ENV['GOOGLE_CHROME_SHIM'] },
-        switches: [
-          '--ignore-certificate-errors',
-          '--disable-popup-blocking',
-          '--disable-translate',
-          '--disable-gpu'
-        ]
-      }
-    else
-      {}
-    end
-  end
-
+  
 end
