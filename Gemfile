@@ -28,8 +28,6 @@ gem 'bcrypt', '~> 3.1.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'watir', '~> 6.19', '>= 6.19.1'
-gem 'webdrivers', '~> 4.6'
 gem 'nokogiri', '~> 1.11', '>= 1.11.7'
 gem 'pg'
 gem 'pry'
