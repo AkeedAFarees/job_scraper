@@ -11,65 +11,37 @@ class Record < ApplicationRecord
   end
 
   def self.scrape(skills)
-    # Hard code URLs for both website with empty query parameters
-    cv_url                = "https://cv.ee/en/search?keywords%5B0%5D="
-    credit_info_url       = "https://www.e-krediidiinfo.ee/otsing?&q="
+    # Require open-uri to parse through the urls
+    require 'open-uri'
 
     # Initiate empty array for bulk creation of jobs in database
     records             = []
 
-    browser_options = if ENV['GOOGLE_CHROME_SHIM'].present?
-                        {
-                          headless: true,
-                          options: { binary: ENV['GOOGLE_CHROME_SHIM'] },
-                          switches: %w(--ignore-certificate-errors --disable-popup-blocking --disable-translate --disable-gpu)
-                        }
-                      else
-                        {}
-                      end
-    # Initiate browser window
-    browser               = Watir::Browser.new(:chrome, browser_options)
+    # Hard code URLs for both website with empty query parameters
+    api_url          = "https://cv.ee/api/v1/vacancies-service/search?limit=20&offset=0&fuzzy=true&isHourlySalary=false&isRemoteWork=false&lang=en&keywords[]="
+    site_url         = "https://cv.ee/et/vacancy/"
+    credit_info_url  = "https://www.e-krediidiinfo.ee/otsing?&q="
 
     # Fetch job titles and companies to reduce duplication
-    jobs = Job.all.select(:title, :company).map{|j| j.title + j.company}
+    jobs = Job.pluck(:title, :company).map(&:join)
 
     # Loop through all skills
     skills.each do |skill|
       # Visit url and look for jobs based on specific skill
-      browser.goto        cv_url + skill
-      parsed_page         = Nokogiri::HTML(browser.html)
-
-      # Fetch all jobs from parsed HTML page returned from browser
-      fetched_jobs        = parsed_page.css('div.vacancy-item')
+      content = JSON.parse(URI.parse(api_url + skill).read)
 
       # Loop through each job
-      fetched_jobs.each do |job|
-        # Find Job Title and Job Link from the parsed HTML
-        title             = job.children.last.css('span.vacancy-item__title').text
-        link              = job.children.first.attributes["href"].value
-
-        # Extract main info of the job
-        main_info         = job.children.css('div.vacancy-item__info-main').children.map{|e| e.text}
-
-        # Extract company name
-        company_name      = main_info.first
-
-        # Extract and process all info related to publishing of the job (Time and Type)
-        publish_info      = main_info.last.split(" | ").first.split(" ", 2)
-
-        time_ago          = publish_info.last.split(" ").reject{|t| t == "about"}
-        published_date    = time_ago[0].to_i.send(time_ago[1]).ago.to_date
-        published_type    = publish_info.first
+      content["vacancies"].each do |job|
 
         # Skip iteration to stop duplication of record, if published date of current job is older than today.
         # That means it must already be in database.
-        if jobs.include?(title + company_name)
+        if jobs.include?(job["positionTitle"] + job["employerName"])
           next
         end
 
         # Visit second website to fetch credit info for the company
-        browser.goto      credit_info_url + company_name
-        credit_info_page  = Nokogiri::HTML(browser.html)
+        url = Addressable::URI.parse(credit_info_url + job["employerName"]).display_uri.to_s
+        credit_info_page  = Nokogiri::HTML(URI.parse(url).read)
 
         # If table exists, it means there are multiple results for the company name
         # Extract revenue info if there is a direct hit on company name
@@ -84,13 +56,16 @@ class Record < ApplicationRecord
 
         # Create a populated hash to push in records array for bulk creation.
         single_job = {
-          link:           "https://cv.ee" + link,
           skill:          skill,
-          title:          title,
-          company:        company_name,
+          title:          job["positionTitle"],
+          company_id:     job["employerId"],
+          company:        job["employerName"],
+          link:           site_url + job["id"].to_s + '/' + job["employerName"].parameterize + '/' + job["positionTitle"].parameterize,
+          published_date: job["publishDate"],
+          published_type: job["renewedDate"].present? ? "Renewed" : "Published",
+          renewed_date:   job["renewedDate"],
+
           revenue:        revenue || nil,
-          published_date: published_date,
-          published_type: published_type,
           revenue_period: revenue_period || nil,
           created_at:     Time.now.utc,
           updated_at:     Time.now.utc
@@ -100,9 +75,6 @@ class Record < ApplicationRecord
         records.push(single_job)
       end
     end
-
-    # Close browser connection
-    browser.close
 
     Job.insert_all!(records) if records.present?
   end

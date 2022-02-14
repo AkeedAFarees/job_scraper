@@ -1,0 +1,21 @@
+<div class="table_filters_wrap">
+  <div class="container">
+    <%= form_tag(records_path, method: :get) do %>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="main_inner_search_wrap">
+            <div class="inner_search_wrap">
+              <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>
+              <%= submit_tag "Search", class: "btn btn-primary" %>
+            </div>
+            <%= link_to "Clear Search", records_path, class: "btn btn-danger" %>
+          </div>
+
+        </div>
+        <div class="col-sm-6">
+          <%= link_to "Export to CSV", export_path, class: "btn btn-success m-w-150" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

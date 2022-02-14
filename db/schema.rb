@@ -22,11 +22,14 @@ ActiveRecord::Schema.define(version: 2022_02_07_105749) do
   end
 
   create_table "jobs", force: :cascade do |t|
+    t.string "cv_job_id"
     t.string "title"
+    t.string "company_id"
     t.string "company"
     t.string "link"
     t.datetime "published_date"
     t.string "published_type"
+    t.datetime "renewed_date"
     t.string "revenue"
     t.string "revenue_period"
     t.string "skill"

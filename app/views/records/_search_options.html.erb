@@ -1,0 +1,21 @@
+<div class="filters_form_wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5">
+        <%= form_for @record, url: records_path, method: :post  do |f| %>
+          <%= f.hidden_field :option, value: "sheet" %>
+          <%= f.button "Search By Google Sheet", type: "submit", class: "btn btn-success" %>
+        <% end %>
+      </div>
+      <div class="col-sm-7">
+        <div class="search_by_skills">
+          <%= form_for @record, url: records_path, method: :post  do |f| %>
+            <%= f.hidden_field :option, value: "skill" %>
+            <%= f.text_field :skills, placeholder: "Skills", class: "form-control" %>
+            <%= f.button "Search By Skills", type: "submit", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
