@@ -16,4 +16,4 @@ RUN bundle install
 
 
 EXPOSE 3001
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-e", "production"]
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3001", "-e", "production"]
