@@ -12,7 +12,7 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 RUN bundle install
-RUN bundle exec rails db:migrate
+#RUN bundle exec rails db:migrate
 
 
 EXPOSE 3000
