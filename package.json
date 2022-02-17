@@ -1,0 +1,8 @@
+{
+  "name": "web_scraper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:AkeedAFarees/opti-scraper.git",
+  "author": "Akeed A Farees <akeedahmedfarees@gmail.com>",
+  "license": "MIT"
+}
