@@ -1,0 +1,5 @@
+var skill_row = "<%= j render 'skills/table_row', skill: @skill %>";
+$('.table-form-body').after(skill_row).fadeIn('slow');
+
+$('.table-row-<%=@skill.id %>').fadeOut(200).fadeIn(400);
+

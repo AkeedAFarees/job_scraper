@@ -1,0 +1,9 @@
+<td><%= skill.id %></td>
+<td><%= skill.name %></td>
+<td><%= skill.min %></td>
+<td><%= skill.max %></td>
+<td><%= skill.experience %></td>
+<td>
+  <%= link_to "Edit", edit_skill_path(skill), remote: true %>
+  <%= link_to 'Delete', skill_path(skill), method: :delete, remote: true %>
+</td>

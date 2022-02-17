@@ -1,0 +1,3 @@
+var editable_row = "<%= j render 'skills/form', skill: @skill %>";
+
+$('.table-row-<%=@skill.id%>').html(editable_row).fadeIn('slow');

@@ -1,15 +1,12 @@
-<%= render 'search_options' %>
-
-<% if @records.present? %>
+<% if @skills.present? %>
   <%= render 'filters' %>
   <%= render 'table' %>
   <div class="container">
     <div class="pagination_wrap">
-      <%= paginate @records %>
+      <%= paginate @skills %>
     </div>
   </div>
-
 <% else %>
   <%= render 'filters' %>
-  <div class="text-center fw-bold"> No Record Found! </div>
+  <div class="text-center fw-bold"> No Skills Found! </div>
 <% end %>

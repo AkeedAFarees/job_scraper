@@ -1,0 +1,31 @@
+<% if @skill.new_record? %>
+
+  <%= form_for @skill, remote: true do |f| %>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <td> <%= @skill.id %> </td>
+    <td> <%= f.text_field :name, placeholder: "Skill Name" %> </td>
+    <td> <%= f.number_field :min, placeholder: "Min Salary" %> </td>
+    <td> <%= f.number_field :max, placeholder: "Max Salary" %> </td>
+    <td> <%= f.text_field :experience, placeholder: "Ex: 2-3" %> </td>
+    <td>
+      <%= f.submit 'Create' %>
+      <%= f.button "Reset", type: :reset %>
+    </td>
+
+  <% end %>
+
+<% else %>
+
+  <%= form_for :skill, method: :put, remote: true do |f| %>
+    <td> <%= @skill.id %> </td>
+    <td> <%= f.text_field :name, placeholder: "Skill Name" %> </td>
+    <td> <%= f.number_field :min, placeholder: "Min Salary" %> </td>
+    <td> <%= f.number_field :max, placeholder: "Max Salary" %> </td>
+    <td> <%= f.text_field :experience, placeholder: "Ex: 2-3" %> </td>
+    <td>
+      <%= f.submit 'Save Skill' %>
+      <%= f.button "Cancel", type: :reset %>
+    </td>
+  <% end %>
+
+<% end %>

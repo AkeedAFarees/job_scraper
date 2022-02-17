@@ -15,7 +15,7 @@
         </tr>
         </thead>
         <tbody>
-        <%- @records.each.with_index(1) do |record, index| %>
+        <% @records.each.with_index(1) do |record, index| %>
           <%= render 'records/row', record: record, i: index %>
         <% end %>
         </tbody>

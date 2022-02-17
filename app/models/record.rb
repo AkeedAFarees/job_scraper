@@ -30,8 +30,9 @@ class Record < ApplicationRecord
       # Visit url and look for jobs based on specific skill
       content = JSON.parse(URI.parse(api_url + skill).read)
 
-      # Loop through each job
-      content["vacancies"].each do |job|
+      if content["vacancies"].present?
+        # Loop through each job
+        content["vacancies"].each do |job|
 
         # Skip iteration to stop duplication of record, if published date of current job is older than today.
         # That means it must already be in database.
@@ -73,6 +74,7 @@ class Record < ApplicationRecord
 
         # Push hash to array
         records.push(single_job)
+      end
       end
     end
 

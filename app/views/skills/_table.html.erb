@@ -1,0 +1,27 @@
+<div class="scrap_table_wrap skills-table">
+  <div class="container">
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Min Salary</th>
+          <th scope="col">Max Salary</th>
+          <th scope="col">Experience</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr class="table-form-body"><%= render 'form' %></tr>
+        <% @skills.each.with_index(1) do |skill, index| %>
+          <tr class="table-row-<%=skill.id%>">
+            <%= render 'skills/row', skill: skill, i: index %>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

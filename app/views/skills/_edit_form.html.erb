@@ -1,0 +1,11 @@
+<%= form_for :skill, url: skills_path(@skill), method: :put, remote: true do |f| %>
+<%#= form_for :skill, url: "/skills/#{@skill.id}", method: :put, remote: true do |f| %>
+
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <td> <%= @skill.id %> </td>
+  <td> <%= f.text_field :name, placeholder: "Skill Name", value: @skill.name %> </td>
+  <td> <%= f.number_field :min, placeholder: "Min Salary", value: @skill.min %> </td>
+  <td> <%= f.number_field :max, placeholder: "Max Salary", value: @skill.max %> </td>
+  <td> <%= f.text_field :experience, placeholder: "Ex: 2-3", value: @skill.experience %> </td>
+  <td> <%= f.submit 'Save' %> </td>
+<% end %>
