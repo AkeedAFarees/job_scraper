@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark navbar-static-top navbar-expand-md">
   <div class="container">
-    </button> <%= link_to "Opti-Scraper", root_path, class: 'navbar-brand' %>
+    </button> <%= link_to "Opti-Scraper", logged_in? ? records_path : root_path, class: 'navbar-brand' %>
     <% if logged_in? %>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav mr-auto">
