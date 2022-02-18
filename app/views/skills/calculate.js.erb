@@ -1,0 +1,7 @@
+<% if @total.present? %>
+  var results = "<%= j render "skills/calculated_results", total: @total %>"
+  $('.calculator-form .results').html(results).fadeIn('slow');
+<% else %>
+  var results = "No relevant skill found!"
+  $('.calculator-form .results').html(results).fadeIn('slow');
+<% end %>

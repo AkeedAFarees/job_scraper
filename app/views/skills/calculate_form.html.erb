@@ -1,0 +1,10 @@
+<div class="calculator-form">
+  <%= form_for :skill, url: calculate_path, remote: true do |f| %>
+    <%= f.select :name, @skills.map(&:name).uniq %>
+    <%= f.select :experience, @skills.map(&:experience).uniq %>
+    <%= f.submit 'Calculate' %>
+  <% end %>
+  <div class="results">
+
+  </div>
+</div>

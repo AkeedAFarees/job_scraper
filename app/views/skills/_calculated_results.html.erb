@@ -1,0 +1,10 @@
+<%= "Cost: €" + total.to_s %>
+<br><br>
+
+<% [2, 2.5, 3, 3.5, 4, 4.5].each do |multiplier| %>
+  <%= multiplier %>
+  <br>
+  <%= '€' + (total * multiplier).to_s %>
+
+  <br><br>
+<% end %>
