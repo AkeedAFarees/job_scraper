@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opti-Scrape</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= favicon_link_tag asset_path('Optimyse.png') %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -17,6 +18,17 @@
     <header>
       <%= render 'layouts/navigation' %>
     </header>
+    <%#= render 'layouts/spinner' %>
     <%= yield %>
   </body>
 </html>
+
+<script>
+  $loader = $(".spinner");
+
+  $(document).on({
+    ajaxStart: function() { $loader.removeClass("hide");    },
+    ajaxStop: function() { $loader.addClass("hide"); }
+  });
+
+</script>
