@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :render_login, only: [:edit_password, :update_password]
 
   def new
     @user = User.new
@@ -16,6 +17,21 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def edit_password
+
+  end
+
+  def update_password
+    @user = User.last
+
+    if params[:new_password] == params[:confirm_password]
+      @user.password = params[:new_password]
+      @user.save!
+    end
+
+    redirect_to root_path
   end
 
   private
