@@ -12,10 +12,10 @@ RUN apt-get update -qq && apt-get install -y yarn
 RUN yarn install
 
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /usr/src/
+WORKDIR /usr/src/
 
-COPY . /usr/src/app
+COPY . /usr/src/
 
 RUN bundle install
 # RUN EDITOR=nano rails credentials:edit
