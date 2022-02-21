@@ -12,7 +12,11 @@ module WebScraper
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    # To allow incoming requests from Optimyse app deployed with CapRover on Mikaels Server
     config.hosts << "job-scrape.cap.mikaels.com"
+
+    # To allow incoming requests from Localhost while running in production mode
+    config.hosts << "localhost"
 
     # Configuration for the application, engines, and railties goes here.
     #
