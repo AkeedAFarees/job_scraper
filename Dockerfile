@@ -2,7 +2,7 @@ FROM ruby:3.1.0
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs nano
 
 
 # install yarn
@@ -18,6 +18,7 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 RUN bundle install
+RUN EDITOR=nano rails credentials:edit
 RUN RAILS_ENV=production bundle exec rake assets:precompile
 #RUN bundle exec rails db:migrate
 
