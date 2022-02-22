@@ -18,6 +18,9 @@ module WebScraper
     # To allow incoming requests from Localhost while running in production mode
     config.hosts << "localhost"
 
+    # To allow incoming requests from app server deployed through Capistrano
+    config.hosts << "209.97.130.157"
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
