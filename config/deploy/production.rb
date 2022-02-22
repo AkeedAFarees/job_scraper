@@ -16,8 +16,8 @@ set :pg_host, 'caprover-ubuntu-s-1vcpu-2gb-intel-lon1-01'
 set :pg_database, 'scraper_production'
 set :pg_username, 'postgres'
 #set :pg_generate_random_password, true
-set :pg_ask_for_password, true
-# set :pg_password, ENV['yoursite_PGPASS']
+# set :pg_ask_for_password, true
+set :pg_password, 'root'
 set :pg_extensions, ['citext','hstore']
 set :pg_encoding, 'UTF-8'
 set :pg_pool, '100'
