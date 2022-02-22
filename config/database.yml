@@ -16,4 +16,4 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV.fetch("POSTGRES_DB") %>
+  database: scraper_production
