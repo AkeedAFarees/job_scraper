@@ -33,6 +33,8 @@ set :branch, 'main'
 # Default value for :pty is false
 set :pty, true
 
+set :pg_without_sudo, true
+
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml"
 
