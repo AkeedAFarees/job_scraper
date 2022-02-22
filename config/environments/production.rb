@@ -6,6 +6,8 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = false
 
+  config.secret_key_base = 'e9c60491b51df479370faad4deca17f86b2af114c5a6a41e92483e599f7de09f37e37014606dcd4d49c285dfc66564012085bdda22eac57fd19e291c4bfe7f35'
+
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
@@ -18,7 +20,7 @@ Rails.application.configure do
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
-  # config.require_master_key = true
+  config.require_master_key = false
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
