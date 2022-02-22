@@ -1,41 +1,56 @@
-<div class="row">
+<div class="row m-b-40">
   <div class="col">
-    <div class="package_box package_details">
+    <div class="package_box m-0-a">
       <h3 class="_title">
-        <span class="_price">
-          <%= "Skill Details" %>
+        <span class="multiplier">
+          <%= "Resource Details" %>
         </span>
       </h3>
       <div>
-        <%= "Min Salary: €" + skill.min.to_s %>
+        <%= "Min Salary: " %>
+        <span class="multiplier">
+          <%= "€" + skill.min.to_s %>
+        </span>
       </div>
       <div>
-        <%= "Max Salary: €" + skill.max.to_s %>
+        <%= "Max Salary: " %>
+        <span class="multiplier">
+          <%= "€" + skill.max.to_s %>
+        </span>
       </div>
       <div>
-        <%= "Cost to Company: €" + total.to_s %>
+        <%= "Cost to Company: "  %>
+        <span class="multiplier">
+          <%= "€" + $cost_to_company.to_s %>
+        </span>
       </div>
-      <div class="total_cost">
-        <%= "Total: €" + (total+skill.max).to_s %>
+      <div>
+        <%= "Total: " %>
+        <span class="multiplier">
+          <%= "€" + total.to_s %>
+        </span>
       </div>
     </div>
   </div>
 </div>
 
-<div class="row">
-<% [2, 2.5, 3, 3.5, 4, 4.5].each do |multiplier| %>
-  <div class="col">
-    <div class="package_box">
-      <h3 class="_title">
-        <span class="_price">
-          <%= multiplier.to_s + "X" %>
-        </span>
-      </h3>
+<div class="row m-b-40">
+  <% [{ 2 => "Opal "}, { 2.5 => "Emerald "}, { 3 => "Topaz "}, { 3.5 => "Sapphire "}, { 4 => "Ruby "}, { 4.5 => "Diamond "}].each do |combo| %>
+    <% combo.each do |key, value| %>
+      <div class="col">
+        <div class="package_box m-0-a">
+          <h3 class="_title">
+            <%= value %>
+            <span class="multiplier">
+              <%= "(" + key.to_s + "X)" %>
+            </span>
+          </h3>
 
-      <div class="total_cost">
-        <%= '€' + ((total+skill.max) * multiplier).to_s %>
+          <div class="total_cost">
+            <%= '€' + (total * key).to_s %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-<% end %>
+    <% end %>
+  <% end %>
 </div>

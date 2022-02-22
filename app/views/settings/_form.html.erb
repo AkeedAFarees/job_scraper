@@ -1,0 +1,18 @@
+<div class="table_filters_wrap">
+  <div class="container">
+    <%= form_with(model: setting) do |f| %>
+      <div class="row">
+        <div class="col-sm-8 m-0-a">
+          <div class="main_inner_search_wrap calculator-form">
+              <%= f.hidden_field :id, value: 1 %>
+              <%= f.label :cost_to_company, "Cost to Company", class: "m-r-40" %>
+            <div class="inner_search_wrap">
+              <%= f.text_field :cost_to_company, placeholder: "Cost to Company", class: "form-control m-r-40" %>
+              <%= f.submit 'Save', class: "btn btn-primary m-r-40" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

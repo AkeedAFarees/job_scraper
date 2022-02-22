@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :settings
   root 'sessions#create'
 
   resources :users, :records, :skills

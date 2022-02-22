@@ -25,8 +25,6 @@ class SkillsController < ApplicationController
 
   # PATCH/PUT /skills/1 or /skills/1.json
   def update
-    p params
-    p skill_params
     @skill.update!(skill_params)
   end
 
@@ -40,10 +38,10 @@ class SkillsController < ApplicationController
   end
 
   def calculate
-    charge = 100.00
+    $cost_to_company = Setting.last.cost_to_company
 
     @skill = Skill.find_by(name: skill_params[:name], experience: skill_params[:experience])
-    @total = @skill.present? ? @skill.max * charge : nil
+    @total = @skill.present? ? @skill.max + $cost_to_company : nil
   end
 
   private

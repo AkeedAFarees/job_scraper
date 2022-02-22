@@ -13570,6 +13570,18 @@ span.next a:hover, span.last a:hover{
   margin-right: 40px;
 }
 
+.m-r-10 {
+  margin-right: 10px;
+}
+
+.m-b-40 {
+  margin-bottom: 40px;
+}
+
+.m-0-a {
+  margin: 0 auto;
+}
+
 .cost {
   font-size: 24px;
   color: #000;
@@ -13579,7 +13591,7 @@ span.next a:hover, span.last a:hover{
 
 .package_box {
   text-align: center;
-  border-radius: 6px;
+  border-radius: 25px;
   color: #000;
   max-width: 360px;
   box-shadow: #64646f40 0px 7px 29px 0px;
@@ -13590,18 +13602,21 @@ span.next a:hover, span.last a:hover{
   background: #1a1f39;
   color: #fff;
   padding: 10px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  font-size: 18px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  font-size: 22px;
+  font-weight: bold;
 }
 
 ._title {
-  background: #075bd6;
-  color: #fff;
+  background: #79a3e0;
+  color: black;
+  //background: #075bd6;
+  //color: #fff;
   font-size: 25px;
-  border-top-left-radius: 10px;
+  border-top-left-radius: 25px;
   padding: 12px;
-  border-top-right-radius: 10px;
+  border-top-right-radius: 25px;
   margin: 0;
 }
 
@@ -13611,6 +13626,7 @@ span.next a:hover, span.last a:hover{
   padding-bottom: 5px;
 }
 
-.package_details {
-  margin-bottom: 100px;
+.multiplier {
+  font-weight: bold;
+  font-size: 18px
 }
