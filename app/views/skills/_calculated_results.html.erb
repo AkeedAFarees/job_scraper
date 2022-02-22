@@ -1,10 +1,41 @@
-<%= "Cost: €" + total.to_s %>
-<br><br>
+<div class="row">
+  <div class="col">
+    <div class="package_box package_details">
+      <h3 class="_title">
+        <span class="_price">
+          <%= "Skill Details" %>
+        </span>
+      </h3>
+      <div>
+        <%= "Min Salary: €" + skill.min.to_s %>
+      </div>
+      <div>
+        <%= "Max Salary: €" + skill.max.to_s %>
+      </div>
+      <div>
+        <%= "Cost to Company: €" + total.to_s %>
+      </div>
+      <div class="total_cost">
+        <%= "Total: €" + (total+skill.max).to_s %>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="row">
 <% [2, 2.5, 3, 3.5, 4, 4.5].each do |multiplier| %>
-  <%= multiplier %>
-  <br>
-  <%= '€' + (total * multiplier).to_s %>
+  <div class="col">
+    <div class="package_box">
+      <h3 class="_title">
+        <span class="_price">
+          <%= multiplier.to_s + "X" %>
+        </span>
+      </h3>
 
-  <br><br>
+      <div class="total_cost">
+        <%= '€' + ((total+skill.max) * multiplier).to_s %>
+      </div>
+    </div>
+  </div>
 <% end %>
+</div>

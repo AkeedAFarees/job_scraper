@@ -13435,6 +13435,7 @@ span.next a:hover, span.last a:hover{
 .main_inner_search_wrap{
   display: flex;
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .table_filters_wrap{
@@ -13567,4 +13568,49 @@ span.next a:hover, span.last a:hover{
 
 .m-r-40 {
   margin-right: 40px;
+}
+
+.cost {
+  font-size: 24px;
+  color: #000;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.package_box {
+  text-align: center;
+  border-radius: 6px;
+  color: #000;
+  max-width: 360px;
+  box-shadow: #64646f40 0px 7px 29px 0px;
+  margin: 0 auto;
+}
+
+.package_box .total_cost {
+  background: #1a1f39;
+  color: #fff;
+  padding: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  font-size: 18px;
+}
+
+._title {
+  background: #075bd6;
+  color: #fff;
+  font-size: 25px;
+  border-top-left-radius: 10px;
+  padding: 12px;
+  border-top-right-radius: 10px;
+  margin: 0;
+}
+
+.package_box > div {
+  //margin: 10px 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.package_details {
+  margin-bottom: 100px;
 }

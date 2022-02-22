@@ -1,10 +1,23 @@
-<div class="calculator-form">
-  <%= form_for :skill, url: calculate_path, remote: true do |f| %>
-    <%= f.select :name, @skills.map(&:name).uniq %>
-    <%= f.select :experience, @skills.map(&:experience).uniq %>
-    <%= f.submit 'Calculate' %>
-  <% end %>
-  <div class="results">
+<div class="table_filters_wrap">
+  <div class="container">
+    <%= form_for :skill, url: calculate_path, remote: true do |f| %>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="main_inner_search_wrap calculator-form">
+          <%= f.select :name, @skills.map(&:name).uniq, {}, class: "form-control m-r-40" %>
+          <%= f.select :experience, @skills.map(&:experience).uniq, {}, class: "form-control m-r-40" %>
+          <%= f.submit 'Calculate', class: "btn btn-success m-r-40" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
 
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="results">
+
+        </div>
+      </div>
+    </div>
   </div>
 </div>
