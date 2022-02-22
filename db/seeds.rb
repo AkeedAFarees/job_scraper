@@ -7,3 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create(username: "dev@optimyse.com", password: "Optimyse@123")
+Setting.create(cost_to_company: 100.00)
