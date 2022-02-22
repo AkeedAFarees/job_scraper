@@ -51,6 +51,7 @@ gem 'capistrano-rails', '~> 1.4'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 gem 'capistrano-postgresql', '~> 6.2'
+gem 'capistrano-rails-collection'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
