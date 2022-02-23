@@ -46,9 +46,6 @@ class SkillsController < ApplicationController
 
   def update_experience
     @skills = Skill.where("LOWER(name) = ?", params[:name].downcase)
-    # respond_to do |format|
-    #   format.js
-    # end
   end
 
   private

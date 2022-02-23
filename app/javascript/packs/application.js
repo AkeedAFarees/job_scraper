@@ -13,7 +13,6 @@ Turbolinks.start()
 ActiveStorage.start()
 
 $(document).on('change', '.skill-select', function (){
-  console.log('cnjdlscn')
   $.ajax({
     method: "get",
     url: "/update_experience",
