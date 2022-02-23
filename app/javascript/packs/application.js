@@ -8,9 +8,17 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-// import "bootstrap"
-// import "/app/assets/stylesheets/application.css.scss"
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+$(document).on('change', '.skill-select', function (){
+  console.log('cnjdlscn')
+  $.ajax({
+    method: "get",
+    url: "/update_experience",
+    data: {
+      name: $(".skill-select option:selected").val()
+    }
+  })
+});

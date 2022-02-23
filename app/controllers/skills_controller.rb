@@ -44,6 +44,13 @@ class SkillsController < ApplicationController
     @total = @skill.present? ? @skill.max + $cost_to_company : nil
   end
 
+  def update_experience
+    @skills = Skill.where("LOWER(name) = ?", params[:name].downcase)
+    # respond_to do |format|
+    #   format.js
+    # end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_skill

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/scraper', to: 'scraper#index'
   get '/export', to: 'records#export'
 
+  get '/update_experience', to: 'skills#update_experience'
   get '/calculate_form', to: 'skills#calculate_form'
   post '/calculate', to: 'skills#calculate'
 

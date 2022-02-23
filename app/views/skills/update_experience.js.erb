@@ -1,0 +1,9 @@
+<%= if @skills.present? %>
+$(".experience-select").empty()
+  .append("<%= escape_javascript(render(:partial => @skills)) %>")
+console.log('Here')
+<% else %>
+$(".experience-select").empty()
+  .append("<option>Select experience</option>")
+console.log('Here2')
+<% end %>
