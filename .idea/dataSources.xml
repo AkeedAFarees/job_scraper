@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/scraper_dev</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="Scraper Production" uuid="34c87f73-0b10-4559-b188-427d4bdbbf05">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/scraper_production</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

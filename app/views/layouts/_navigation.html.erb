@@ -1,16 +1,22 @@
-<nav class="navbar navbar-dark navbar-static-top navbar-expand-md">
+<nav class="main_header">
   <div class="container">
-    </button> <%= link_to "Opti-Scraper", logged_in? ? records_path : root_path, class: 'navbar-brand' %>
-    <% if logged_in? %>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav mr-auto">
-          <li class='nav-item'><%= link_to 'Scraper', records_path, class: 'nav-link' %></li>
-          <li class='nav-item'><%= link_to 'Skills', skills_path, class: 'nav-link' %></li>
-          <li class='nav-item'><%= link_to 'Calculator', calculate_form_path, class: 'nav-link' %></li>
-          <li class='nav-item'><%= link_to 'Settings', edit_setting_path(1), class: 'nav-link' %></li>
-          <li class='nav-item'><%= link_to "Logout", logout_path, class: "btn btn-danger" %></li>
-        </ul>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= link_to "Opti-Scraper", logged_in? ? records_path : root_path, class: 'navbar-brand' %>
       </div>
-    <% end %>
+      <% if logged_in? %>
+        <div class="col-sm-8">
+          <div class="main_menu_wrap">
+            <ul>
+              <li class= "<%= current_page?('/records') ? 'active' : '' %>"><%= link_to 'Scraper', records_path %></li>
+              <li class= "<%= current_page?('/skills') ? 'active' : '' %>"><%= link_to 'Skills', skills_path, class: '' %></li>
+              <li class= "<%= current_page?('/calculate_form') ? 'active' : '' %>"><%= link_to 'Calculator', calculate_form_path, class: '' %></li>
+              <li class= "<%= current_page?('/settings/1/edit') ? 'active' : '' %>"><%= link_to 'Settings', edit_setting_path(1), class: '' %></li>
+              <li><%= link_to "Logout", logout_path, class: "" %></li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </nav>

@@ -13630,3 +13630,81 @@ span.next a:hover, span.last a:hover{
   font-weight: bold;
   font-size: 18px
 }
+
+.navbar-brand{
+
+  color: #ffffff;
+}
+
+.navbar-brand:hover{
+
+  color: #ffffff;
+
+
+}
+
+
+.main_header{
+
+  margin-bottom: 0;
+
+  background: #075bd6;
+
+  padding: 10px 0px;
+}
+
+.main_menu_wrap{
+
+
+
+}
+
+
+.main_menu_wrap ul{
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+.main_menu_wrap ul li{
+
+  list-style: none;
+}
+
+
+.main_menu_wrap ul li a{
+
+  text-decoration: none;
+
+  font-weight: 600;
+
+  padding: 10px 13px;
+
+  font-size: 14px;
+
+  color: #ffffff;
+
+  display: block;
+
+  line-height: 1;
+
+  margin-right: 5px;
+
+  transition: all .5s ease-in-out;
+
+  letter-spacing: .6px;
+
+  text-decoration: none;
+}
+
+.main_menu_wrap ul li a:hover,
+.main_menu_wrap ul li.active a{
+  color: #ffffffa8;
+  text-decoration: none;
+
+}
