@@ -37,8 +37,8 @@ class RecordsController < ApplicationController
   end
 
   def extract_skills
-    spreadsheet_id  = ENV['SPREADSHEET_ID']
-    range           = ENV['RANGE']
+    spreadsheet_id  = "1t_y1LPrGKrjcOgro1R1bF72iaPBJjJRNAXp0ugK61wE"
+    range           = "Sheet1!A3:B"
 
     service         = GoogleSheetsService.service
     response        = service.get_spreadsheet_values spreadsheet_id, range
