@@ -1,9 +1,9 @@
 require 'googleauth'
 
 module GoogleCredentials
-  CLIENT_ID = ENV['GOOGLE_CLIENT_ID']
-  CLIENT_SECRET = ENV['GOOGLE_CLIENT_SECRET']
-  REFRESH_TOKEN = ENV['GOOGLE_REFRESH_TOKEN']
+  CLIENT_ID = "584914619763-5c72rnaf5ki37ro5meabs640sesq2dae.apps.googleusercontent.com"
+  CLIENT_SECRET = "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"
+  REFRESH_TOKEN = "1//04ITF6KtehPTFCgYIARAAGAQSNwF-L9IrE7nW_rpeG50_vi_N04CBINI4b6NM7RP5C13O0s4mv3dsuMbGL5SZz3whz7CcNsSFIFI"
   SCOPES = [
     'https://www.googleapis.com/auth/spreadsheets.readonly',
   ].freeze
