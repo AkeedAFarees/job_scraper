@@ -18,17 +18,7 @@
     <header>
       <%= render 'layouts/navigation' %>
     </header>
-    <%#= render 'layouts/spinner' %>
+    <%= render 'layouts/spinner' %>
     <%= yield %>
   </body>
 </html>
-
-<script>
-  $loader = $(".spinner");
-
-  $(document).on({
-    ajaxStart: function() { $loader.removeClass("hide");    },
-    ajaxStop: function() { $loader.addClass("hide"); }
-  });
-
-</script>

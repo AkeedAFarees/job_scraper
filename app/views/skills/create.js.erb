@@ -1,5 +1,10 @@
 var skill_row = "<%= j render 'skills/table_row', skill: @skill %>";
+
+//Add newly created table row
 $('.table-form-body').after(skill_row).fadeIn('slow');
 
+//Flash new row to bring user's attention
 $('.table-row-<%=@skill.id %>').fadeOut(200).fadeIn(400);
-//$('.no-skills').css('display', 'none');
+
+//Reset form after new skill is created
+$(".table-form-body form")[0].reset();

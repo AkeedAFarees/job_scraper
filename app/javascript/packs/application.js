@@ -19,3 +19,8 @@ $(document).on('change', '.skill-select', function (){
     }
   })
 });
+
+// $(document).on({
+//   ajaxStart: function() { $(".loader_wrap").removeClass("loader_show");},
+//   ajaxStop: function() { $(".loader_wrap").addClass("loader_show"); }
+// });

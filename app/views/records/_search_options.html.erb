@@ -19,3 +19,11 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(".loader_wrap").removeClass("loader_show");
+
+  $(document).on('click', 'button[type=submit]', function (){
+    $(".loader_wrap").addClass("loader_show");
+  });
+</script>

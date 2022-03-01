@@ -2237,55 +2237,6 @@ span.last a:hover {
   }
 }
 
-.spinner {
-  width: 40px;
-  height: 40px;
-  position: relative;
-  margin: 100px auto;
-}
-
-.double-bounce1,
-.double-bounce2 {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: #333;
-  opacity: 0.6;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-  animation: sk-bounce 2.0s infinite ease-in-out;
-}
-
-.double-bounce2 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
-}
-
-@-webkit-keyframes sk-bounce {
-  0%,
-  100% {
-    -webkit-transform: scale(0.0)
-  }
-  50% {
-    -webkit-transform: scale(1.0)
-  }
-}
-
-@keyframes sk-bounce {
-  0%,
-  100% {
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  }
-  50% {
-    transform: scale(1.0);
-    -webkit-transform: scale(1.0);
-  }
-}
-
 .m-r-40 {
   margin-right: 40px;
 }
@@ -2381,7 +2332,7 @@ span.last a:hover {
   font-weight: 600;
   padding: 10px 13px;
   font-size: 14px;
-  color: #ffffff;
+  color: #ffffffa8;
   display: block;
   line-height: 1;
   margin-right: 5px;
@@ -2392,7 +2343,7 @@ span.last a:hover {
 
 .main_menu_wrap ul li a:hover,
 .main_menu_wrap ul li.active a {
-  color: #ffffffa8;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -2447,3 +2398,75 @@ span.last a:hover {
   border-radius: 0px;
   padding: 10px 18px;
 }
+
+.loader_wrap {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 999999;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #000000cc;
+  display: none;
+}
+
+.loader_wrap.loader_show{
+  display: block;
+}
+
+.spinner {
+  width: 77px;
+  height: 27px;
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.spinner>div {
+  width: 20px;
+  height: 20px;
+  background-color: #106eea;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0)
+  }
+  40% {
+    -webkit-transform: scale(1.0)
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
