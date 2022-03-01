@@ -1,3 +1,7 @@
+if ($(".cancel").length){
+  $(".cancel")[0].click();
+}
+
 var editable_row = "<%= j render 'skills/form', skill: @skill %>";
 
 $('.table-row-<%=@skill.id%>').addClass('edit-in-progress').html(editable_row).fadeIn('slow');

@@ -22,7 +22,7 @@
     <td> <%= f.text_field :experience, placeholder: "Ex: 2-3", class: 'skill_edit_experience' %> </td>
     <td>
       <%= f.submit 'Save', { class: "edit_skill_button", data_id: "#{@skill.id}", data_url: "#{skill_path}"} %>
-      <%= link_to "Cancel", cancel_update_path(@skill), remote: true %>
+      <%= link_to "Cancel", cancel_update_path(@skill), remote: true, class: "cancel"%>
     </td>
   <% end %>
 
