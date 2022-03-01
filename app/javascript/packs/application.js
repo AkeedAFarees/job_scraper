@@ -20,7 +20,21 @@ $(document).on('change', '.skill-select', function (){
   })
 });
 
-// $(document).on({
-//   ajaxStart: function() { $(".loader_wrap").removeClass("loader_show");},
-//   ajaxStop: function() { $(".loader_wrap").addClass("loader_show"); }
-// });
+$(document).on('click', '.edit_skill_button', function (e){
+  e.preventDefault();
+
+  var id = $(this).attr('data_id');
+
+  var skillData = {
+    name: $('.skill_edit_name').val(),
+    min: $('.skill_edit_min').val(),
+    max: $('.skill_edit_max').val(),
+    experience: $('.skill_edit_experience').val()
+  }
+
+  $.ajax({
+    type: "PUT",
+    url: "skills/" + id,
+    data: {'skill': skillData},
+  });
+});

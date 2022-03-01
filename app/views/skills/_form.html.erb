@@ -16,13 +16,12 @@
 
   <%= form_for :skill, method: :put, remote: true do |f| %>
     <td> <%= @skill.id %> </td>
-    <td> <%= f.text_field :name, placeholder: "Skill Name" %> </td>
-    <td> <%= f.number_field :min, placeholder: "Min Salary" %> </td>
-    <td> <%= f.number_field :max, placeholder: "Max Salary" %> </td>
-    <td> <%= f.text_field :experience, placeholder: "Ex: 2-3" %> </td>
+    <td> <%= f.text_field :name, placeholder: "Skill Name", class: 'skill_edit_name' %> </td>
+    <td> <%= f.number_field :min, placeholder: "Min Salary", class: 'skill_edit_min' %> </td>
+    <td> <%= f.number_field :max, placeholder: "Max Salary", class: 'skill_edit_max' %> </td>
+    <td> <%= f.text_field :experience, placeholder: "Ex: 2-3", class: 'skill_edit_experience' %> </td>
     <td>
-      <%= f.submit 'Save Skill' %>
-      <%= f.button "Cancel", type: :reset %>
+      <%= f.submit 'Save Skill', { class: "edit_skill_button", data_id: "#{@skill.id}", data_url: "#{skill_path}"} %>
     </td>
   <% end %>
 
