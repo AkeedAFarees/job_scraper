@@ -1,7 +1,6 @@
 <% if @skill.new_record? %>
 
-  <%= form_for @skill, remote: true do |f| %>
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= form_for :skill, method: :post, remote: true do |f| %>
     <td> <%= @skill.id %> </td>
     <td> <%= f.text_field :name, placeholder: "Skill Name" %> </td>
     <td> <%= f.number_field :min, placeholder: "Min Salary" %> </td>
