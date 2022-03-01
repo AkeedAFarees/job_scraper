@@ -16,7 +16,7 @@
 
         <tr class="table-form-body"><%= render 'form' %></tr>
         <% @skills.each.with_index(1) do |skill, index| %>
-          <tr class="table-row-<%=skill.id%>">
+          <tr class="table-row-<%=skill.id%>" data-id="<%=skill.id %>">
             <%= render 'skills/row', skill: skill, i: index %>
           </tr>
         <% end %>

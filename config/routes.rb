@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/update_experience', to: 'skills#update_experience'
   get '/calculate_form', to: 'skills#calculate_form'
   post '/calculate', to: 'skills#calculate'
+  get '/cancel_update/:id', to: 'skills#cancel_update', as: :cancel_update
 
   get '/edit_password', to: 'users#edit_password'
   post '/update_password', to: 'users#update_password'

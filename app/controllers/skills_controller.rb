@@ -1,5 +1,5 @@
 class SkillsController < ApplicationController
-  before_action :set_skill, only: %i[ show edit update destroy ]
+  before_action :set_skill, only: %i[ show edit update destroy cancel_update ]
 
   # GET /skills or /skills.json
   def index
@@ -46,6 +46,10 @@ class SkillsController < ApplicationController
 
   def update_experience
     @skills = Skill.where("LOWER(name) = ?", params[:name].downcase)
+  end
+
+  def cancel_update
+
   end
 
   private
