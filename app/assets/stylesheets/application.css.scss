@@ -2195,7 +2195,7 @@ span.last a:hover {
   justify-content: center;
 }
 
-.table_filters_wrap .btn-success {
+.table_filters_wrap .btn-success, .table_filters_wrap .btn-primary {
   width: 130px;
   height: 45px;
   display: flex;
@@ -2470,3 +2470,6 @@ span.last a:hover {
   }
 }
 
+.m-w-90 {
+  min-width: 90px;
+}

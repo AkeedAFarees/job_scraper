@@ -2,6 +2,8 @@
   var results = "<%= j render "skills/calculated_results", total: @total, skill: @skill %>"
   $('.results').html(results).fadeIn('slow');
 <% else %>
-  var results = "No relevant skill found!"
+  var results = "No relevant result found!"
   $('.results').html(results).fadeIn('slow');
 <% end %>
+
+$(".form-control").val("");

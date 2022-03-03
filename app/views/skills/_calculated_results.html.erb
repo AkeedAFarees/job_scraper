@@ -1,38 +1,46 @@
-<div class="row m-b-40">
-  <div class="col">
-    <div class="package_box m-0-a">
-      <h3 class="_title">
-        <span class="multiplier">
-          <%= "Resource Details" %>
-        </span>
-      </h3>
-      <div>
-        <%= "Min Salary: " %>
-        <span class="multiplier">
-          <%= "€" + skill.min.to_s %>
-        </span>
-      </div>
-      <div>
-        <%= "Max Salary: " %>
-        <span class="multiplier">
-          <%= "€" + skill.max.to_s %>
-        </span>
-      </div>
-      <div>
-        <%= "Cost to Company: "  %>
-        <span class="multiplier">
-          <%= "€" + $cost_to_company.to_s %>
-        </span>
-      </div>
-      <div>
-        <%= "Total: " %>
-        <span class="multiplier">
-          <%= "€" + total.to_s %>
-        </span>
+<% if @skill.present? %>
+  <div class="row m-b-40">
+    <div class="col">
+      <div class="package_box m-0-a">
+        <h3 class="_title">
+          <span class="multiplier">
+            <%= "Resource Details" %>
+          </span>
+        </h3>
+        <div>
+          <%= "Min Salary: " %>
+          <span class="multiplier">
+            <%= "€" + skill.min.to_s %>
+          </span>
+        </div>
+        <div>
+          <%= "Max Salary: " %>
+          <span class="multiplier">
+            <%= "€" + skill.max.to_s %>
+          </span>
+        </div>
+        <div>
+          <%= "Bonus: "  %>
+          <span class="multiplier">
+            <%= "€" + (skill.max*$bonus).to_s %>
+          </span>
+        </div>
+        <div>
+          <%= "Cost to Company: "  %>
+          <span class="multiplier">
+            <%= "€" + $cost_to_company.to_s %>
+          </span>
+        </div>
+        <div>
+          <%= "Total: " %>
+          <span class="multiplier">
+            <%= "€" + total.to_s %>
+          </span>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <div class="row m-b-40">
   <% [{ 2 => "Opal "}, { 2.5 => "Emerald "}, { 3 => "Topaz "}, { 3.5 => "Sapphire "}, { 4 => "Ruby "}, { 4.5 => "Diamond "}].each do |combo| %>

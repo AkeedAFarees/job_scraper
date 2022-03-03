@@ -39,9 +39,15 @@ class SkillsController < ApplicationController
 
   def calculate
     $cost_to_company = Setting.last.cost_to_company
+    $bonus = 0.2
 
-    @skill = Skill.find_by(name: skill_params[:name], experience: skill_params[:experience])
-    @total = @skill.present? ? @skill.max + $cost_to_company : nil
+    if skill_params[:max].present?
+      @skill = nil
+      @total = skill_params[:max].to_f + $cost_to_company + (skill_params[:max].to_f * $bonus)
+    else
+      @skill = Skill.find_by(name: skill_params[:name], experience: skill_params[:experience])
+      @total = @skill.present? ? @skill.max + $cost_to_company + (@skill.max * $bonus) : nil
+    end
   end
 
   def update_experience
